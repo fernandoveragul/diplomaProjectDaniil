@@ -20,5 +20,6 @@ def get_list_files(*, name_dir: str) -> list[str | None]:
     return list(map(lambda file: file if file.split(".")[-1] in file_extensions else None, files))
 
 
-def do_filer_file_list(*, files: list[str | None]):
-    return list((file for file in files if file))
+def get_filtered_files_list(*, name_folder: str) -> list[str]:
+    list_files: list = get_list_files(name_dir=name_folder)
+    return list((file for file in list_files if file))
