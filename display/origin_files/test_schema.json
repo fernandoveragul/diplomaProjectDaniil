@@ -1,0 +1,14 @@
+{"ex":
+        [
+            {
+                "question": 0,
+                "text": "",
+                "answers": {
+                    "answer_1": false,
+                    "answer_2": false,
+                    "answer_3": false,
+                    "answer_4": false
+                }
+            }
+        ]
+}

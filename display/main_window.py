@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6 import QtWebEngineWidgets
+from PyQt6.QtWebEngineWidgets import QWebEngineView
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -39,10 +39,10 @@ class Ui_MainWindow(object):
         self.gboxTutorialButtons.setSizePolicy(sizePolicy)
         self.gboxTutorialButtons.setTitle("")
         self.gboxTutorialButtons.setObjectName("gboxTutorialButtons")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.gboxTutorialButtons)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.layTutorial = QtWidgets.QVBoxLayout(self.gboxTutorialButtons)
+        self.layTutorial.setObjectName("layTutorial")
         self.gridLayout.addWidget(self.gboxTutorialButtons, 0, 0, 1, 1)
-        self.vtextTutorialInfo = QtWebEngineWidgets.QWebEngineView(self.tabTutorial)
+        self.vtextTutorialInfo = QWebEngineView(self.tabTutorial)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.MinimumExpanding, QtWidgets.QSizePolicy.Policy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -65,8 +65,8 @@ class Ui_MainWindow(object):
         self.gboxExamplesButtons.setSizePolicy(sizePolicy)
         self.gboxExamplesButtons.setTitle("")
         self.gboxExamplesButtons.setObjectName("gboxExamplesButtons")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.gboxExamplesButtons)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.layExample = QtWidgets.QVBoxLayout(self.gboxExamplesButtons)
+        self.layExample.setObjectName("layExample")
         self.gridLayout_2.addWidget(self.gboxExamplesButtons, 0, 0, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(20, 303, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.gridLayout_2.addItem(spacerItem1, 1, 0, 1, 1)
@@ -74,7 +74,7 @@ class Ui_MainWindow(object):
         self.btnRunTest.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.btnRunTest.setObjectName("btnRunTest")
         self.gridLayout_2.addWidget(self.btnRunTest, 2, 0, 1, 1)
-        self.vtextExampleInfo = QtWebEngineWidgets.QWebEngineView(self.tabExamples)
+        self.vtextExampleInfo = QWebEngineView(self.tabExamples)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.MinimumExpanding, QtWidgets.QSizePolicy.Policy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -102,7 +102,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
