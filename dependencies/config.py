@@ -26,15 +26,18 @@ def get_filtered_files_list(*, folder_name: str) -> list[str]:
     return list((file for file in list_files if file))
 
 
+def path_to_icon():
+    path: str = os.path.dirname(sys.argv[0])
+    sp: str = "/" if platform.system() == "Linux" else "\\"
+    return f'{path}{sp}display{sp}origin_files{sp}icon.png'
+
+
 def get_paths_to_files(*, folder_name: str):
     files: list = get_list_files(folder_name=folder_name)
     default_path = f'{os.path.dirname(sys.argv[0])}{get_path_list_files(folder_name=folder_name)}'
     paths: list[str] = []
-    separator: str = "/" if platform.system() == "Linux" else "\\"
+    sp: str = "/" if platform.system() == "Linux" else "\\"
     for file in files:
         if file:
-            paths.append(f'{default_path}{separator}{file}')
+            paths.append(f'{default_path}{sp}{file}')
     return paths
-
-
-
