@@ -35,7 +35,8 @@ class Application(QMainWindow, main_window):
             chapter, current = file.split(".")[0].split("_")
             _btn_ = QPushButton()
             _btn_.setObjectName(f"btn{folder_name.capitalize()}{chapter}_{current}")
-            _btn_.setText(f"ГЛАВА {current}")
+            _btn_.setText(f"ГЛАВА {current}") if folder_name == "tutorials" else _btn_.setText(
+                f"ЗАДАНИЕ К ГЛАВЕ {current}")
             _btn_.clicked.connect(lambda ch, ind=i: add_function_to_button(index=ind))
             layout.addWidget(_btn_)
 
