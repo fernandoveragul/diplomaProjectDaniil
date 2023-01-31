@@ -1,7 +1,10 @@
+import os.path
+import sys
+
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import QMainWindow, QLayout, QPushButton, QMessageBox
 
-from apps.tests import Test
+from apps.check_knowledge import Test
 from display import main_window
 from dependencies.config import get_filtered_files_list, get_paths_to_files
 from dependencies.exceptions import InvalidFolderType
@@ -17,7 +20,7 @@ class Application(QMainWindow, main_window):
         self.__window_with_test = None
         self.__enable_special_settings()
 
-        self.__current_example = get_filtered_files_list(folder_name="examples")[0]  # DEFAULT
+        self.__path_to_test = get_paths_to_files(folder_name="tests")[0]  # DEFAULT
         self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="tutorials")[0]))  # DEFAULT
         self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="examples")[0]))  # DEFAULT
 
@@ -32,8 +35,12 @@ class Application(QMainWindow, main_window):
                 self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
             elif folder_name == "examples":
                 self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
-                self.__current_example = get_filtered_files_list(folder_name="examples")[index]
-                self.__window_with_test = None
+                try:
+                    self.__path_to_test = get_paths_to_files(folder_name="tests")[index]
+                    self.__window_with_test = None
+                except IndexError:
+                    self.__path_to_test = os.path.dirname(sys.argv[0])
+                    self.__window_with_test = None
             else:
                 raise InvalidFolderType()
 
@@ -48,10 +55,10 @@ class Application(QMainWindow, main_window):
             layout.addWidget(_btn_)
 
     def __open_window_with_current_test(self):
-        test_name = self.__current_example.replace(".pdf", ".json")
-        exist_tests: list[str] = get_filtered_files_list(folder_name="tests")
-        if test_name in exist_tests:
-            self.__window_with_test = Test(path_to_test=test_name)
+        path_to_test = self.__path_to_test.replace(".pdf", ".json")
+        exist_tests: list[str] = get_paths_to_files(folder_name="tests")
+        if path_to_test in exist_tests:
+            self.__window_with_test = Test(path_to_test=path_to_test)
             self.__window_with_test.show()
         else:
             QMessageBox.warning(self, "Ошибка", "Такого теста пока не существует")

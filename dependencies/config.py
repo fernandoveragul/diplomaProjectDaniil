@@ -7,14 +7,20 @@ import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from PyQt6.QtWidgets import QLabel, QPushButton
+from PyQt6.QtWidgets import QPushButton, QTextBrowser
 
 from dependencies.project_data import TypeDir
 from dependencies.exceptions import InvalidFolderType, InvalidTestName
 
 
 ########################################################################################################################
-# START BLOCK WITH CONFIG FOR Application()
+# LEGEND =>
+#           $<>$ == ESSENCE
+########################################################################################################################
+
+
+########################################################################################################################
+# START BLOCK WITH CONFIG FOR $APPLICATION$
 ########################################################################################################################
 def get_path_list_files(*, folder_name: str) -> str | bool:
     types = [i.name for i in TypeDir]
@@ -54,9 +60,9 @@ def get_paths_to_files(*, folder_name: str) -> list[str]:
 
 
 ########################################################################################################################
-# END BLOCK WITH CONFIG FOR Application()
+# END BLOCK WITH CONFIG FOR $APPLICATION$
 ########################################################################################################################
-# START BLOCK WITH CONFIG FOR Test()
+# START BLOCK WITH CONFIG FOR $TEST$
 ########################################################################################################################
 def load_current_test(path_to_test: str) -> dict[str, list]:
     with open(path_to_test, 'r') as test:
@@ -84,12 +90,12 @@ def change_current_test(path_to_test: str, new_data: list[dict]) -> None:
             raise InvalidTestName()
 
 
-def get_gen_questions_slide(questions: list[dict]):
+def get_gen_questions_slide(*, questions: list[dict]):
     for q in questions:
         yield q
 
 
-def get_gen_test_text(*, label: QLabel, buttons: list[QPushButton], data: list[dict]):
+def get_gen_test_text(*, label: QTextBrowser, buttons: list[QPushButton], data: list[dict]):
     for ind_dt, dt in enumerate(data):
         label.setText(dt.get("text"))
         for ind, btn in enumerate(buttons):
@@ -98,9 +104,9 @@ def get_gen_test_text(*, label: QLabel, buttons: list[QPushButton], data: list[d
 
 
 ########################################################################################################################
-# END BLOCK WITH CONFIG FOR Test()
+# END BLOCK WITH CONFIG FOR $TEST$
 ########################################################################################################################
-# START BLOCK FOR SEND EMAIL WITH RESULT Test()
+# START BLOCK FOR SEND EMAIL WITH RESULT $TEST$
 ########################################################################################################################
 def _init_smtp_server():
     contex = ssl.create_default_context()
