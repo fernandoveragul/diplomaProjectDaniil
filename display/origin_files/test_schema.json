@@ -2,13 +2,14 @@
         [
             {
                 "question": 0,
+                "time_in_minutes": 0,
                 "text": "",
-                "answers": {
-                    "answer_1": false,
-                    "answer_2": false,
-                    "answer_3": false,
-                    "answer_4": false
-                }
+                "answers": [
+                    {"answer": "", "is_true":  false},
+                    {"answer": "", "is_true":  false},
+                    {"answer": "", "is_true":  false},
+                    {"answer": "", "is_true":  false}
+                ]
             }
         ]
 }

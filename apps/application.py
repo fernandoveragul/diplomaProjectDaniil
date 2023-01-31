@@ -1,5 +1,3 @@
-import platform
-
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import QMainWindow, QLayout, QPushButton, QMessageBox
 
@@ -13,8 +11,15 @@ class Application(QMainWindow, main_window):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        self.tabWidget.setCurrentWidget(self.tabTutorial)
+        self.stackedAdminPanel.setCurrentWidget(self.pgLogin)
         self.__window_with_test = None
         self.__enable_special_settings()
+
+        self.__current_example = get_filtered_files_list(folder_name="examples")[0]  # DEFAULT
+        self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="tutorials")[0]))  # DEFAULT
+        self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="examples")[0]))  # DEFAULT
 
         self.__create_buttons(self.layTutorial, "tutorials")
         self.__create_buttons(self.layExample, "examples")
@@ -24,9 +29,11 @@ class Application(QMainWindow, main_window):
         def add_function_to_button(*, index: int):
             paths: list[str] = get_paths_to_files(folder_name=folder_name)
             if folder_name == "tutorials":
-                self.vtextTutorialInfo.setUrl(QUrl(f"file://{paths[index]}"))
+                self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
             elif folder_name == "examples":
-                self.vtextExampleInfo.setUrl(QUrl(f"file://{paths[index]}"))
+                self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
+                self.__current_example = get_filtered_files_list(folder_name="examples")[index]
+                self.__window_with_test = None
             else:
                 raise InvalidFolderType()
 
@@ -41,13 +48,11 @@ class Application(QMainWindow, main_window):
             layout.addWidget(_btn_)
 
     def __open_window_with_current_test(self):
-        separator: str = "/" if platform.system() == "Linux" else "\\"
-        test_name = self.vtextExampleInfo.url().path().split(f'{separator}')[-1].replace(".pdf", ".json")
-        print(test_name)
-        current_tests: list[str] = get_filtered_files_list(folder_name="tests")
-        print(current_tests)
-        if test_name in current_tests:
-            self.__window_with_test = Test(test_name=test_name)
+        test_name = self.__current_example.replace(".pdf", ".json")
+        exist_tests: list[str] = get_filtered_files_list(folder_name="tests")
+        if test_name in exist_tests:
+            self.__window_with_test = Test(path_to_test=test_name)
+            self.__window_with_test.show()
         else:
             QMessageBox.warning(self, "Ошибка", "Такого теста пока не существует")
 
