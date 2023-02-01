@@ -108,17 +108,18 @@ def get_gen_test_text(*, label: QTextBrowser, buttons: list[QPushButton], data: 
 ########################################################################################################################
 # START BLOCK FOR SEND EMAIL WITH RESULT $TEST$
 ########################################################################################################################
-def _init_smtp_server():
+def get_smtp_server() -> smtplib.SMTP_SSL:
     contex = ssl.create_default_context()
-    return smtplib.SMTP_SSL("smtp.gmail.com", 587, context=contex)
+    return smtplib.SMTP_SSL("smtp.gmail.com", 465, context=contex)
 
 
-def _init_message(*, send_from: str, send_to: str, send_subject: str, student: dict, result: dict):
+def get_message(*, send_from: str, send_to: str, send_subject: str, student: dict, result: dict) -> MIMEMultipart:
     msg = MIMEMultipart()
     msg["From"] = send_from
     msg["To"] = send_to
     msg["Subject"] = send_subject
     message_text = f"""\
+    
     <html>
         <body>
             <div>
@@ -138,8 +139,7 @@ def _init_message(*, send_from: str, send_to: str, send_subject: str, student: d
     return msg
 
 
-def send_message(*, login_data: dict, receiver_email: str, message):
+def send_message(*, server, login_data: dict, receiver_email: str, message):
     sender_email, password = login_data.get("sender_email"), login_data.get("password")
-    with _init_smtp_server() as server:
-        server.login(sender_email, password=password)
-        server.send_message(sender_email, receiver_email, message)
+    server.login(sender_email, password=password)
+    server.send_message(message, sender_email, receiver_email)
