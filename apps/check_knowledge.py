@@ -59,10 +59,8 @@ class Test(QWidget, test_window):
 
     def __minus_sec(self):
         hours, minutes, seconds = list(map(int, self.lblTimer.text().split(":")))
-
         if hours == 0 and minutes == 0 and seconds == 0:
             self.finish_program()
-
         if 0 < seconds < 60:
             seconds -= 1
         else:
@@ -82,9 +80,7 @@ class Test(QWidget, test_window):
     def __next_question(self, gen: Generator, buttons: list[QPushButton]):
         if not self.timer.isActive():
             self.timer.start()
-
         text_answer = [btn.text() for btn in buttons if btn.isChecked()]
-
         dt = next(gen, False)
         if dt is False:
             self.finish_program()
@@ -95,7 +91,6 @@ class Test(QWidget, test_window):
         [btn.setCheckable(True) for btn in buttons if not btn.isChecked()]
 
     def __calculate_score(self, answers: list[str], origin_data: list[dict]):
-
         for ind, ans in enumerate(answers):
             for _, v in origin_data[ind].items():
                 if isinstance(v, list):
