@@ -1,9 +1,8 @@
 import platform
-import time
 from typing import Generator
 
-from PyQt6.QtCore import QTimer, Qt
-from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox, QProgressBar, QLayout, QGridLayout
+from PyQt6.QtCore import QTimer
+from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
 
 from dependencies.config import get_gen_questions_slide, load_current_test, get_gen_test_text, \
     get_smtp_server, get_message, send_message
@@ -111,7 +110,7 @@ class Test(QWidget, test_window):
 
         self.stackedWidget.setCurrentWidget(self.pgTest)
 
-    def __send(self, button):
+    def __send_email_to_teacher(self):
         with get_smtp_server() as server:
             message = get_message(send_from=self.__auth_data['sender_email'], send_to="example@gmail.com",
                                   send_subject=self.__student['group'], student=self.__student, result=self.__result)
@@ -131,5 +130,5 @@ class Test(QWidget, test_window):
                     f"Результат будет выслан на посту преподавателю")
         btn_continue = msg.addButton("Отправить результат", QMessageBox.ButtonRole.NoRole)
         msg.setDefaultButton(btn_continue)
-        btn_continue.clicked.connect(lambda: self.__send(button=btn_continue))
+        btn_continue.clicked.connect(lambda: self.__send_email_to_teacher())
         msg.exec()
