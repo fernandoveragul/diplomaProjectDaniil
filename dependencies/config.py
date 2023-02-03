@@ -1,5 +1,6 @@
 import os
 import platform
+import shutil
 import sys
 import json
 import smtplib
@@ -64,13 +65,22 @@ def get_paths_to_files(*, folder_name: str) -> list[str]:
 ########################################################################################################################
 # START BLOCK WITH CONFIG FOR $TEST$
 ########################################################################################################################
+
+def decode_dt(*, dt: dict):
+    import base64
+    lg, ps = dt['email'].split("№")
+    lg = base64.a85decode(base64.b85decode(lg.encode())).decode()
+    ps = base64.a85decode(base64.b85decode(ps.encode())).decode()
+    return lg, ps
+
+
 def load_current_test(path_to_test: str) -> dict[str, list]:
     with open(path_to_test, 'r') as test:
         current_test: dict = json.loads(test.read())
     return current_test
 
 
-def save_current_test(path_to_save: str, test: list[dict]) -> None:
+def save_current_test(path_to_save: str, test: dict[str, list]) -> None:
     with open(path_to_save, 'w') as file_test:
         file_test.write(json.dumps(test, indent=4))
 
@@ -101,6 +111,12 @@ def get_gen_test_text(*, label: QTextBrowser, buttons: list[QPushButton], data: 
         for ind, btn in enumerate(buttons):
             btn.setText(dt.get("answers")[ind].get("answer"))
         yield dt
+
+
+def copy_file_to_files(*, copy_from: str, folder_cp: str):
+    sp: str = '/' if platform.system() == "Linux" else "\\"
+    copy_to: str = f'{os.path.dirname(sys.argv[0])}{sp}files{sp}{folder_cp}'
+    shutil.copy2(copy_from, copy_to)
 
 
 ########################################################################################################################

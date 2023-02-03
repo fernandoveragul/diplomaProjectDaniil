@@ -2,7 +2,7 @@
         [
             {
                 "question": 0,
-                "time_in_minutes": 0,
+                "time_in_minutes": 90,
                 "text": "0000",
                 "answers": [
                     {"answer": "1", "is_true":  true},

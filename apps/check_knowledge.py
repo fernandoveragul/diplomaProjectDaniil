@@ -1,11 +1,13 @@
+import json
 import platform
+from pathlib import Path
 from typing import Generator
 
 from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
 
 from dependencies.config import get_gen_questions_slide, load_current_test, get_gen_test_text, \
-    get_smtp_server, get_message, send_message
+    get_smtp_server, get_message, send_message, decode_dt
 from display import test_window
 
 
@@ -20,10 +22,12 @@ class Test(QWidget, test_window):
 
         self.__test = load_current_test(path_to_test=self.path_to_test)
         self.__questions = list(get_gen_questions_slide(questions=self.__test["ex"]))
+        self.__init_time_for_test()
 
         self.setup_non_interactive_elements()
         self.setup_interactive_elements()
         self.setup_vars()
+        self.setup_placeholders()
 
     def setup_vars(self):
         self.__text_answers_from_user: list = []
@@ -42,16 +46,35 @@ class Test(QWidget, test_window):
         self.btnFinish.clicked.connect(lambda: self.finish_program())
 
     def setup_non_interactive_elements(self):
-        self.lblTimer.setText("00:10:00")
+        timer_dt: list = self.__init_time_for_test()
+        if len(timer_dt) > 1:
+            h, m = self.__init_time_for_test()
+            self.lblTimer.setText(f"{f'0{h}' if h < 9 else h}:{m}:00")
+        else:
+            self.lblTimer.setText(f"00:10:00" if timer_dt[0] == 0 else f"00:{timer_dt[0]}:00")
         self.timer: QTimer = QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(lambda: self.__minus_sec())
+
+    def setup_placeholders(self):
+        self.ledtReceiverEMail.setPlaceholderText("Введите адрес почты преподавателя")
+        self.ledtSecondName.setPlaceholderText("Введите свою фамилию")
+        self.ledtGroupName.setPlaceholderText("Введите номер группы. (Например 403 ИСП)")
 
     def finish_program(self):
         self.timer.stop()
         self.__calculate_score(self.__text_answers_from_user[1:], self.__test["ex"])
         self.__message_about_sending_results(self.__equal_answers_from_user)
         self.close()
+
+    def __init_time_for_test(self):
+        minutes: int = self.__test['ex'][0].get("time_in_minutes")
+        if minutes > 59:
+            hours: int = minutes // 60
+            minutes = minutes - hours * 60
+            return [hours, minutes]
+        else:
+            return [minutes]
 
     def __add_percent_in_progress_bar(self):
         self.progress_bar_counter += 1
@@ -98,8 +121,12 @@ class Test(QWidget, test_window):
                         self.__equal_answers_from_user.append(val["is_true"] if val["answer"] == ans[0] else False)
 
     def __parse_auth_data(self):
-        self.__auth_data["sender_email"] = 'example@gmail.com'
-        self.__auth_data["password"] = 'example'
+        default_data: str = str(Path(Path.cwd(), 'display', 'origin_files', '.login_data.json'))
+        with open(default_data, 'r') as file:
+            dt = json.loads(file.read())
+        lg, ps = decode_dt(dt=dt)
+        self.__auth_data["sender_email"] = lg
+        self.__auth_data["password"] = ps
         self.__student["name"] = self.ledtSecondName.text()
         self.__student["group"] = self.ledtGroupName.text()
 
@@ -107,9 +134,9 @@ class Test(QWidget, test_window):
 
     def __send_email_to_teacher(self):
         with get_smtp_server() as server:
-            message = get_message(send_from=self.__auth_data['sender_email'], send_to="example@gmail.com",
+            message = get_message(send_from=self.__auth_data['sender_email'], send_to=self.ledtReceiverEMail.text(),
                                   send_subject=self.__student['group'], student=self.__student, result=self.__result)
-            send_message(server=server, login_data=self.__auth_data, receiver_email="example@gmail.com",
+            send_message(server=server, login_data=self.__auth_data, receiver_email=self.ledtReceiverEMail.text(),
                          message=message)
 
     def __message_about_sending_results(self, answers: list[bool]):
@@ -122,7 +149,7 @@ class Test(QWidget, test_window):
         msg.setIcon(QMessageBox.Icon.Information)
         msg.setText(f"{self.__student['name']} {self.__student['group']},\n"
                     f"количество баллов равно: {sum(answers)}\n"
-                    f"Результат будет выслан на посту преподавателю")
+                    f"Результат будет выслан на почту {self.ledtReceiverEMail.text()}")
         btn_continue = msg.addButton("Отправить результат", QMessageBox.ButtonRole.NoRole)
         msg.setDefaultButton(btn_continue)
         btn_continue.clicked.connect(lambda: self.__send_email_to_teacher())

@@ -1,12 +1,16 @@
+import hashlib
+import json
 import os.path
 import sys
+from pathlib import Path
 
 from PyQt6.QtCore import QUrl
-from PyQt6.QtWidgets import QMainWindow, QLayout, QPushButton, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QLayout, QPushButton, QMessageBox, QFileDialog
 
 from apps.check_knowledge import Test
 from display import main_window
-from dependencies.config import get_filtered_files_list, get_paths_to_files
+from dependencies.config import get_filtered_files_list, get_paths_to_files, copy_file_to_files, load_current_test, \
+    save_current_test
 from dependencies.exceptions import InvalidFolderType
 
 
@@ -18,15 +22,16 @@ class Application(QMainWindow, main_window):
         self.tabWidget.setCurrentWidget(self.tabTutorial)
         self.stackedAdminPanel.setCurrentWidget(self.pgLogin)
         self.__window_with_test = None
+        self.__test_schema = load_current_test(str(Path(Path.cwd(), 'files', 'test_schema.json')))
+        self.__counter_questions: int = 0
         self.__enable_special_settings()
+        self.__create_buttons(self.layTutorial, "tutorials")
+        self.__create_buttons(self.layExample, "examples")
+        self.setup_static_buttons_and_changed_text_event()
 
         self.__path_to_test = get_paths_to_files(folder_name="tests")[0]  # DEFAULT
         self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="tutorials")[0]))  # DEFAULT
         self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="examples")[0]))  # DEFAULT
-
-        self.__create_buttons(self.layTutorial, "tutorials")
-        self.__create_buttons(self.layExample, "examples")
-        self.btnRunTest.clicked.connect(self.__open_window_with_current_test)
 
     def __create_buttons(self, layout: QLayout, folder_name: str):
         def add_function_to_button(*, index: int):
@@ -37,9 +42,9 @@ class Application(QMainWindow, main_window):
                 self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
                 try:
                     self.__path_to_test = get_paths_to_files(folder_name="tests")[index]
-                    self.__window_with_test = None
                 except IndexError:
                     self.__path_to_test = os.path.dirname(sys.argv[0])
+                finally:
                     self.__window_with_test = None
             else:
                 raise InvalidFolderType()
@@ -76,3 +81,114 @@ class Application(QMainWindow, main_window):
         self.vtextExampleInfo.settings().setAttribute(
             self.vtextExampleInfo.settings().WebAttribute.PdfViewerEnabled, True
         )
+
+    ####################################################################################################################
+    # ADMIN ESSENCE
+    ####################################################################################################################
+
+    def __login_admin(self):
+        path_to_login_data: str = str(Path(Path.cwd(), 'display', 'origin_files', '.login_data.json'))
+        login: str = hashlib.sha256(self.ledtLogin.text().encode()).hexdigest()
+        password: str = hashlib.sha256(self.ledtPassword.text().encode()).hexdigest()
+
+        with open(path_to_login_data, 'r') as login_data:
+            dt: dict = json.loads(login_data.read())
+
+        if login == dt['login'] and password == dt['password']:
+            self.stackedAdminPanel.setCurrentWidget(self.pgOperationWithFiles)
+        else:
+            QMessageBox.information(self, "НЕУДАЧА", 'Неверный логин или пароль')
+
+        self.stackedAdminPanel.setCurrentWidget(self.pgOperationWithFiles)
+
+    def clear_text_editors(self, is_end: bool = False):
+        meta_data: list = self.ledtTimeToDo.text().split()
+        if len(meta_data) > 1:
+            self.__add_question(time_for_test=meta_data[-1])
+        else:
+            self.__add_question()
+        if not is_end:
+            self.__clear_editors()
+        else:
+            self.__final_adding_question(meta_data=meta_data)
+
+    def __clear_editors(self):
+        self.ledtAnswerFirst.setText("")
+        self.ledtAnswerSecond.setText("")
+        self.ledtAnswerThird.setText("")
+        self.ledtAnswerFour.setText("")
+        self.ptedQuestion.setPlainText("")
+
+    def setup_static_buttons_and_changed_text_event(self):
+        self.ledtAnswerFirst.textChanged.connect(lambda: self.rbtnAnswerFirst.setText(self.ledtAnswerFirst.text()))
+        self.ledtAnswerSecond.textChanged.connect(lambda: self.rbtnAnswerSecond.setText(self.ledtAnswerSecond.text()))
+        self.ledtAnswerThird.textChanged.connect(lambda: self.rbtnAnswerThird.setText(self.ledtAnswerThird.text()))
+        self.ledtAnswerFour.textChanged.connect(lambda: self.rbtnAnswerFour.setText(self.ledtAnswerFour.text()))
+
+        self.btnRunTest.clicked.connect(self.__open_window_with_current_test)
+        self.btnLogin.clicked.connect(lambda: self.__login_admin())
+        self.btnAddQuestion.clicked.connect(lambda: self.clear_text_editors(is_end=False))
+        self.btnEndCreateTest.clicked.connect(lambda: self.clear_text_editors(is_end=True))
+
+        self.btnAddTutorial.clicked.connect(lambda: self.__add_file_to_files(folder_name="tutorials"))
+        self.btnAddExample.clicked.connect(lambda: self.__add_file_to_files(folder_name="examples"))
+        self.btnDelTutorial.clicked.connect(lambda: self.__delete_file_from_files(folder_name="tutorials"))
+        self.btnDelExample.clicked.connect(lambda: self.__delete_file_from_files(folder_name="examples"))
+        self.btnDelTest.clicked.connect(lambda: self.__delete_file_from_files(folder_name="tests"))
+
+    def __add_file_to_files(self, folder_name: str):
+        def_folder: str = str(Path(Path.home()))
+        try:
+            cp_from: str = QFileDialog.getOpenFileName(self, "PDF файл",
+                                                       directory=def_folder,
+                                                       filter="All Files (*);;EXAMPLES Files (*.pdf)")[0]
+            copy_file_to_files(copy_from=cp_from, folder_cp=folder_name)
+        except FileNotFoundError:
+            QMessageBox.critical(self, "ОШИБКА", "ОКНО ЗАКРЫТО БЕЗ ВЫБОРА ФАЙЛА\nЛИБО НЕ СУЩЕСТВУЕТ ТАКОГО ФАЙЛА")
+
+    def __delete_file_from_files(self, folder_name: str):
+        def_folder: str = str(Path(Path.cwd(), "files", folder_name))
+        try:
+            deleting_file: str = QFileDialog.getOpenFileName(self, "Open File",
+                                                             directory=def_folder,
+                                                             filter="All Files (*);;Tutorial or Example Files (*.pdf);;"
+                                                                    "Tests Files (*.json)")[0]
+            os.remove(deleting_file)
+        except FileNotFoundError:
+            QMessageBox.critical(self, "ОШИБКА", "ОКНО ЗАКРЫТО БЕЗ ВЫБОРА ФАЙЛА\nЛИБО НЕ СУЩЕСТВУЕТ ТАКОГО ФАЙЛА")
+
+    def __add_question(self, time_for_test: int = 10):
+        for_adding_dictionary: dict = {'question': self.__counter_questions, 'time_in_minutes': int(time_for_test),
+                                       'text': self.ptedQuestion.toPlainText(), 'answers': [
+                {'answer': self.ledtAnswerFirst.text(), "is_true": self.rbtnAnswerFirst.isChecked()},
+                {'answer': self.ledtAnswerSecond.text(), "is_true": self.rbtnAnswerSecond.isChecked()},
+                {'answer': self.ledtAnswerThird.text(), "is_true": self.rbtnAnswerThird.isChecked()},
+                {'answer': self.ledtAnswerFour.text(), "is_true": self.rbtnAnswerFour.isChecked()}
+            ]}
+
+        self.__test_schema['ex'].append(for_adding_dictionary)
+        self.__counter_questions += 1
+
+        QMessageBox.information(self, "УСПЕХ", f"Вопрос был добавлен к текущему тесту")
+
+    def __final_adding_question(self, meta_data: list[str]):
+        if len(meta_data) == 0:
+            QMessageBox.critical(self, "КРИТИЧЕСКАЯ ОШИБКА", "НЕЛЬЗЯ СОЗДАТЬ ТЕСТ БЕЗ ЕГО НОМЕРА")
+        else:
+            self.__test_schema['ex'].append({"question": self.__counter_questions + 1,
+                                             'time_in_minutes': 0,
+                                             'text': "Спасибо за прохождение теста",
+                                             'answers': [
+                                                 {"answer": "Нажмите, чтобы продолжить", "is_true": False},
+                                                 {"answer": "Нажмите, чтобы продолжить", "is_true": False},
+                                                 {"answer": "Нажмите, чтобы продолжить", "is_true": False},
+                                                 {"answer": "Нажмите, чтобы продолжить", "is_true": False}
+                                             ]})
+            save_current_test(path_to_save=str(Path(Path.cwd(), 'files', 'tests', f'1_{meta_data[0]}.json')),
+                              test=self.__test_schema)
+            self.__clear_editors()
+            QMessageBox.information(self, "УСПЕХ", "Тест был создан, перезапустите приложение, "
+                                                   "чтобы он инициализировался")
+            self.ledtTimeToDo.setText('')
+            self.__counter_questions = 0
+            self.__test_schema = load_current_test(str(Path(Path.cwd(), 'files', 'test_schema.json')))
