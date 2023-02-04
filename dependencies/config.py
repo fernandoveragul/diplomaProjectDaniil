@@ -85,17 +85,12 @@ def save_current_test(path_to_save: str, test: dict[str, list]) -> None:
         file_test.write(json.dumps(test, indent=4))
 
 
-def add_question(questions: list, question: dict) -> list[dict]:
-    questions.append(question)
-    return questions
-
-
 def change_current_test(path_to_test: str, new_data: list[dict]) -> None:
-    old_test: dict[str, list] = load_current_test(path_to_test=path_to_test)
-    new_test = old_test.update({"ex": new_data}) if old_test else None
+    print(path_to_test, new_data)
+    dt: dict[str, list] = {"ex": new_data}
     with open(path_to_test, 'w') as file_test:
-        if new_test:
-            file_test.write(json.dumps(new_test))
+        if dt:
+            file_test.write(json.dumps(dt, indent=4))
         else:
             raise InvalidTestName()
 

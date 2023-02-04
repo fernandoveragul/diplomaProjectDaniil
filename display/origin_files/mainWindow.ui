@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>786</width>
+    <width>789</width>
     <height>589</height>
    </rect>
   </property>
@@ -55,7 +55,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -206,8 +206,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QStackedWidget" name="stackedAdminPanel">
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="pgLogin">
            <layout class="QGridLayout" name="gridLayout_3">
@@ -238,7 +241,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </spacer>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="ledtLogin"/>
+             <widget class="QLineEdit" name="ledtLogin">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
             </item>
             <item row="1" column="2">
              <spacer name="horizontalSpacer_2">
@@ -257,6 +264,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <widget class="QLineEdit" name="ledtPassword">
               <property name="echoMode">
                <enum>QLineEdit::Password</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -297,6 +307,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
              </widget>
             </item>
             <item row="0" column="1" rowspan="13">
@@ -333,10 +351,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
              </widget>
             </item>
             <item row="12" column="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerFour"/>
+             <widget class="QLineEdit" name="ledtAnswerFour">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
             </item>
             <item row="8" column="0" rowspan="5">
              <widget class="QGroupBox" name="groupBox">
@@ -422,6 +457,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="0" column="2">
              <widget class="QLineEdit" name="ledtTimeToDo">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
@@ -435,7 +475,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </widget>
             </item>
             <item row="9" column="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerFirst"/>
+             <widget class="QLineEdit" name="ledtAnswerFirst">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
             </item>
             <item row="0" column="0" rowspan="5">
              <widget class="QGroupBox" name="gboxFileWorkers">
@@ -498,6 +547,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QPushButton" name="btnChangeTest">
+                 <property name="text">
+                  <string>РЕДАКТИРОВАТЬ ТЕСТ</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -520,118 +576,174 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="page">
-           <layout class="QGridLayout" name="gridLayout_6">
-            <item row="8" column="4" colspan="4">
-             <widget class="Line" name="line_7">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="15" column="4" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerFour_2"/>
-            </item>
-            <item row="2" column="4" colspan="4">
-             <widget class="Line" name="line_6">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="0">
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" rowspan="5">
-             <spacer name="verticalSpacer_7">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="15" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="4" colspan="2">
-             <spacer name="verticalSpacer_6">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="4" colspan="2">
-             <widget class="QLineEdit" name="ledtTimeToDo_2"/>
-            </item>
-            <item row="14" column="2">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="7">
-             <widget class="QPushButton" name="btnEndCreateTest_2">
+          <widget class="QWidget" name="pgChangeTest">
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0" rowspan="2">
+             <widget class="QGroupBox" name="gboxChTests">
               <property name="font">
                <font>
                 <pointsize>14</pointsize>
                </font>
               </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
+              <property name="title">
+               <string>ТЕСТЫ</string>
+              </property>
+              <layout class="QVBoxLayout" name="layTests"/>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="3">
+             <widget class="Line" name="line_6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLineEdit" name="ledtChNameTime">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QPushButton" name="btnChPerv">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>ПРЕДЫДУЩИЙ</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QPushButton" name="btnChNext">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>СЛЕДУЮЩИЙ</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QPushButton" name="btnChFinish">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
               </property>
               <property name="text">
                <string>ЗАКОНЧИТЬ</string>
               </property>
              </widget>
             </item>
-            <item row="11" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>TextLabel</string>
+            <item row="1" column="2" colspan="4">
+             <widget class="Line" name="line_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2" colspan="4">
+             <widget class="QPlainTextEdit" name="ptedChQuestion">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="6">
+             <widget class="Line" name="line_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" rowspan="4">
+             <widget class="QGroupBox" name="gboxChTrueAnswers">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="title">
+               <string>ВЕРНЫЙ ОТВЕТ</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QRadioButton" name="rbtnChAnswerFirst">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtnChAnswerSecond">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtnChAnswerThird">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtnChAnswerFour">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="4" column="2" colspan="4">
+             <widget class="QLineEdit" name="ledtChAnswerFirst">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="0" column="3" rowspan="16">
-             <widget class="Line" name="line_5">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+            <item row="6" column="2" colspan="4">
+             <widget class="QLineEdit" name="ledtChAnswerThird">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="5" column="2" rowspan="5">
-             <spacer name="verticalSpacer_8">
+            <item row="7" column="2" colspan="4">
+             <widget class="QLineEdit" name="ledtChAnswerFour">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacer_5">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -643,193 +755,23 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
              </spacer>
             </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="2">
-             <widget class="QLabel" name="label_2">
-              <property name="text">
-               <string>TextLabel</string>
+            <item row="5" column="2" colspan="4">
+             <widget class="QLineEdit" name="ledtChAnswerSecond">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="10" column="4" rowspan="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerFirst_2"/>
-            </item>
-            <item row="0" column="6">
-             <widget class="QPushButton" name="btnAddQuestion_2">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="text">
-               <string>СЛЕДУЮЩИЙ ВОПРОС</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1" rowspan="11">
-             <widget class="Line" name="line_10">
+            <item row="4" column="1" rowspan="4">
+             <widget class="Line" name="line_8">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="3">
-             <widget class="Line" name="line_8">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="12" column="4" rowspan="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerSecond_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="2">
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="15" column="2">
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="14" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="3">
-             <widget class="Line" name="line_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="14" column="4" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerThird_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="4" colspan="4">
-             <widget class="QPlainTextEdit" name="ptedQuestion_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="cursor" stdset="0">
-               <cursorShape>IBeamCursor</cursorShape>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" rowspan="2" colspan="3">
-             <widget class="QTextBrowser" name="textBrowser">
-              <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="7" rowspan="6">
-             <widget class="QGroupBox" name="groupBox_2">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::RightToLeft</enum>
-              </property>
-              <property name="title">
-               <string>ВЕРНЫЙ ОТВЕТ</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_6">
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerFirst_2">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerSecond_2">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerThird_2">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerFour_2">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-              </layout>
              </widget>
             </item>
            </layout>

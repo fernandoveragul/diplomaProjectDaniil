@@ -1,59 +1,119 @@
-{"ex":
-        [
-            {
-                "question": 0,
-                "time_in_minutes": 90,
-                "text": "0000",
-                "answers": [
-                    {"answer": "1", "is_true":  true},
-                    {"answer": "2", "is_true":  false},
-                    {"answer": "3", "is_true":  false},
-                    {"answer": "4", "is_true":  false}
-                ]
-            },
-            {
-                "question": 0,
-                "time_in_minutes": 0,
-                "text": "0000",
-                "answers": [
-                    {"answer": "11", "is_true":  true},
-                    {"answer": "22", "is_true":  false},
-                    {"answer": "33", "is_true":  false},
-                    {"answer": "44", "is_true":  false}
-                ]
-            },
-            {
-                "question": 0,
-                "time_in_minutes": 0,
-                "text": "0000",
-                "answers": [
-                    {"answer": "111", "is_true":  true},
-                    {"answer": "222", "is_true":  false},
-                    {"answer": "333", "is_true":  false},
-                    {"answer": "444", "is_true":  false}
-                ]
-            },
-            {
-                "question": 0,
-                "time_in_minutes": 0,
-                "text": "0000",
-                "answers": [
-                    {"answer": "1111", "is_true":  true},
-                    {"answer": "2222", "is_true":  false},
-                    {"answer": "3333", "is_true":  false},
-                    {"answer": "4444", "is_true":  false}
-                ]
-            },
-            {
-                "question": 0,
-                "time_in_minutes": 0,
-                "text": "thanks",
-                "answers": [
-                    {"answer": "press for end", "is_true":  true},
-                    {"answer": "", "is_true":  false},
-                    {"answer": "", "is_true":  false},
-                    {"answer": "", "is_true":  false}
-                ]
-            }
-        ]
+{
+    "ex": [
+        {
+            "question": 0,
+            "time_in_minutes": 90,
+            "text": "a",
+            "answers": [
+                {
+                    "answer": "a",
+                    "is_true": false
+                },
+                {
+                    "answer": "a",
+                    "is_true": false
+                },
+                {
+                    "answer": "a",
+                    "is_true": false
+                },
+                {
+                    "answer": "a",
+                    "is_true": false
+                }
+            ]
+        },
+        {
+            "question": 1,
+            "time_in_minutes": 90,
+            "text": "b",
+            "answers": [
+                {
+                    "answer": "b",
+                    "is_true": false
+                },
+                {
+                    "answer": "b",
+                    "is_true": false
+                },
+                {
+                    "answer": "b",
+                    "is_true": false
+                },
+                {
+                    "answer": "b",
+                    "is_true": false
+                }
+            ]
+        },
+        {
+            "question": 2,
+            "time_in_minutes": 90,
+            "text": "c",
+            "answers": [
+                {
+                    "answer": "c",
+                    "is_true": false
+                },
+                {
+                    "answer": "c",
+                    "is_true": false
+                },
+                {
+                    "answer": "c",
+                    "is_true": false
+                },
+                {
+                    "answer": "c",
+                    "is_true": false
+                }
+            ]
+        },
+        {
+            "question": 3,
+            "time_in_minutes": 90,
+            "text": "d",
+            "answers": [
+                {
+                    "answer": "d",
+                    "is_true": false
+                },
+                {
+                    "answer": "d",
+                    "is_true": false
+                },
+                {
+                    "answer": "d",
+                    "is_true": false
+                },
+                {
+                    "answer": "d",
+                    "is_true": false
+                }
+            ]
+        },
+        {
+            "question": 4,
+            "time_in_minutes": 0,
+            "text": "thanks",
+            "answers": [
+                {
+                    "answer": "press for end",
+                    "is_true": true
+                },
+                {
+                    "answer": "",
+                    "is_true": false
+                },
+                {
+                    "answer": "",
+                    "is_true": false
+                },
+                {
+                    "answer": "",
+                    "is_true": false
+                }
+            ]
+        }
+    ]
 }
