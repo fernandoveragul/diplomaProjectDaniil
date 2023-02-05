@@ -96,11 +96,11 @@ class Application(QMainWindow, main_window):
         self.ledtAnswerThird.textChanged.connect(lambda: self.rbtnAnswerThird.setText(self.ledtAnswerThird.text()))
         self.ledtAnswerFour.textChanged.connect(lambda: self.rbtnAnswerFour.setText(self.ledtAnswerFour.text()))
 
-        self.ledtChAnswerFirst.textChanged.connect(lambda: self.rbtnAnswerFirst.setText(self.ledtChAnswerFirst.text()))
+        self.ledtChAnswerFirst.textChanged.connect(lambda: self.rbtnChAnswerFirst.setText(self.ledtChAnswerFirst.text()))
         self.ledtChAnswerSecond.textChanged.connect(
-            lambda: self.rbtnAnswerSecond.setText(self.ledtChAnswerSecond.text()))
-        self.ledtChAnswerThird.textChanged.connect(lambda: self.rbtnAnswerThird.setText(self.ledtChAnswerThird.text()))
-        self.ledtChAnswerFour.textChanged.connect(lambda: self.rbtnAnswerFour.setText(self.ledtChAnswerFour.text()))
+            lambda: self.rbtnChAnswerSecond.setText(self.ledtChAnswerSecond.text()))
+        self.ledtChAnswerThird.textChanged.connect(lambda: self.rbtnChAnswerThird.setText(self.ledtChAnswerThird.text()))
+        self.ledtChAnswerFour.textChanged.connect(lambda: self.rbtnChAnswerFour.setText(self.ledtChAnswerFour.text()))
 
         self.btnRunTest.clicked.connect(self.__open_window_with_current_test)
         self.btnLogin.clicked.connect(lambda: self.__login_admin())
