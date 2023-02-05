@@ -7,6 +7,7 @@ import smtplib
 import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from pathlib import Path
 
 from PyQt6.QtWidgets import QPushButton, QTextBrowser
 
@@ -44,9 +45,8 @@ def get_filtered_files_list(*, folder_name: str) -> list[str]:
 
 
 def path_to_icon() -> str:
-    path: str = os.path.dirname(sys.argv[0])
-    sp: str = "/" if platform.system() == "Linux" else "\\"
-    return f'{path}{sp}display{sp}origin_files{sp}icon.png'
+    path: Path = Path(Path.cwd(), 'files', 'icon.png')
+    return str(path)
 
 
 def get_paths_to_files(*, folder_name: str) -> list[str]:

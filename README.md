@@ -15,6 +15,6 @@ dependencies = "PyQt6 + web-engine, pyinstaller"
 4. ```commandline
    mkrir compile
    cd compile
-   pyinstqller -w -D -i "..\display\origin_files\icon.ico" --add-data "..\files;files" ..\main.py
+   pyinstaller -w -D -i "..\display\origin_files\icon.ico" --add-data "..\files;files" ..\main.py
    ```
 5. Достать из папки ```compile\dist``` папку ```\main``` например на рабочий стол

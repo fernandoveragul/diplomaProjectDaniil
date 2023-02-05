@@ -3,11 +3,12 @@ import platform
 from pathlib import Path
 from typing import Generator
 
+from PyQt6 import QtGui
 from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QWidget, QPushButton, QMessageBox
 
 from dependencies.config import get_gen_questions_slide, load_current_test, get_gen_test_text, \
-    get_smtp_server, get_message, send_message, decode_dt
+    get_smtp_server, get_message, send_message, decode_dt, path_to_icon
 from display import test_window
 
 
@@ -19,6 +20,7 @@ class Test(QWidget, test_window):
         self.__result: dict = {}
         self.setupUi(self)
         self.path_to_test = path_to_test
+        self.setWindowIcon(QtGui.QIcon(f'{path_to_icon()}'))
 
         self.__test = load_current_test(path_to_test=self.path_to_test)
         self.__questions = list(get_gen_questions_slide(questions=self.__test["ex"]))
@@ -121,7 +123,7 @@ class Test(QWidget, test_window):
                         self.__equal_answers_from_user.append(val["is_true"] if val["answer"] == ans[0] else False)
 
     def __parse_auth_data(self):
-        default_data: str = str(Path(Path.cwd(), 'display', 'origin_files', '.login_data.json'))
+        default_data: str = str(Path(Path.cwd(), 'files', '.login_data.json'))
         with open(default_data, 'r') as file:
             dt = json.loads(file.read())
         lg, ps = decode_dt(dt=dt)
