@@ -271,6 +271,10 @@ class Application(QMainWindow, main_window):
     def __save(self):
         change_current_test(self.__current_test_path["test"],
                             self.__update_all_questions(self.__current_questions, self.__get_text()))
+        self.__current_test_path: dict = {}
+        self.__current_test: dict = {}
+        self.__current_question_counter: int = 0
+        self.__current_questions: list = []
 
     def __display_current_question(self, is_origin: bool, is_up: bool):
         try:
