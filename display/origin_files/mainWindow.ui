@@ -570,7 +570,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <cursorShape>IBeamCursor</cursorShape>
               </property>
               <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
+               <enum>QFrame::StyledPanel</enum>
               </property>
              </widget>
             </item>
@@ -604,6 +604,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <font>
                 <pointsize>14</pointsize>
                </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -652,8 +655,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="2" column="2" colspan="4">
              <widget class="QPlainTextEdit" name="ptedChQuestion">
+              <property name="cursor" stdset="0">
+               <cursorShape>IBeamCursor</cursorShape>
+              </property>
               <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
+               <enum>QFrame::StyledPanel</enum>
               </property>
              </widget>
             </item>
