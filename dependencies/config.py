@@ -68,7 +68,7 @@ def get_paths_to_files(*, folder_name: str) -> list[str]:
 
 def decode_dt(*, dt: dict):
     import base64
-    lg, ps = dt['email'].split("№")
+    lg, ps = dt['email'].split("\\")
     lg = base64.a85decode(base64.b85decode(lg.encode())).decode()
     ps = base64.a85decode(base64.b85decode(ps.encode())).decode()
     return lg, ps
