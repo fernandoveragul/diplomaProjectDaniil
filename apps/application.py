@@ -20,11 +20,11 @@ class Application(QMainWindow, main_window):
         super().__init__()
         self.setupUi(self)
 
-        self.tabWidget.setCurrentWidget(self.tabTutorial)
-        self.stackedAdminPanel.setCurrentWidget(self.pgLogin)
+        self.tabWidget.setCurrentWidget(self.tbStudent)
+        self.stackProfessor.setCurrentWidget(self.pgLogin)
         self.__path_to_test = get_paths_to_files(folder_name="tests")[0]  # DEFAULT
-        self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="tutorials")[0]))  # DEFAULT
-        self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="examples")[0]))  # DEFAULT
+        self.pdfTutorial.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="tutorials")[0]))  # DEFAULT
+        self.pdfExample.setUrl(QUrl.fromLocalFile(get_paths_to_files(folder_name="examples")[0]))  # DEFAULT
 
         self.__current_test_path: dict = {}
         self.__current_test: dict = {}
@@ -45,9 +45,9 @@ class Application(QMainWindow, main_window):
         def add_function_to_button(*, index: int):
             paths: list[str] = get_paths_to_files(folder_name=folder_name)
             if folder_name == "tutorials":
-                self.vtextTutorialInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
+                self.pdfTutorial.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
             elif folder_name == "examples":
-                self.vtextExampleInfo.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
+                self.pdfExample.setUrl(QUrl.fromLocalFile(f"{paths[index]}"))
                 try:
                     self.__path_to_test = get_paths_to_files(folder_name="tests")[index]
                 except IndexError:
@@ -77,18 +77,11 @@ class Application(QMainWindow, main_window):
             QMessageBox.warning(self, "Ошибка", "Такого теста пока не существует")
 
     def __enable_special_settings(self):
-        self.vtextTutorialInfo.settings().setAttribute(
-            self.vtextTutorialInfo.settings().WebAttribute.PluginsEnabled, True
-        )
-        self.vtextTutorialInfo.settings().setAttribute(
-            self.vtextTutorialInfo.settings().WebAttribute.PdfViewerEnabled, True
-        )
-        self.vtextExampleInfo.settings().setAttribute(
-            self.vtextExampleInfo.settings().WebAttribute.PluginsEnabled, True
-        )
-        self.vtextExampleInfo.settings().setAttribute(
-            self.vtextExampleInfo.settings().WebAttribute.PdfViewerEnabled, True
-        )
+        self.pdfTutorial.settings().setAttribute(self.pdfTutorial.settings().WebAttribute.PluginsEnabled, True)
+        self.pdfTutorial.settings().setAttribute(self.pdfTutorial.settings().WebAttribute.PdfViewerEnabled, True)
+
+        self.pdfExample.settings().setAttribute(self.pdfTutorial.settings().WebAttribute.PluginsEnabled, True)
+        self.pdfExample.settings().setAttribute(self.pdfExample.settings().WebAttribute.PdfViewerEnabled, True)
 
     def setup_static_buttons_and_changed_text_event(self):
         self.ledtAnswerFirst.textChanged.connect(lambda: self.rbtnAnswerFirst.setText(self.ledtAnswerFirst.text()))
@@ -96,14 +89,18 @@ class Application(QMainWindow, main_window):
         self.ledtAnswerThird.textChanged.connect(lambda: self.rbtnAnswerThird.setText(self.ledtAnswerThird.text()))
         self.ledtAnswerFour.textChanged.connect(lambda: self.rbtnAnswerFour.setText(self.ledtAnswerFour.text()))
 
-        self.ledtChAnswerFirst.textChanged.connect(lambda: self.rbtnChAnswerFirst.setText(self.ledtChAnswerFirst.text()))
+        self.ledtChAnswerFirst.textChanged.connect(
+            lambda: self.rbtnChAnswerFirst.setText(self.ledtChAnswerFirst.text()))
         self.ledtChAnswerSecond.textChanged.connect(
             lambda: self.rbtnChAnswerSecond.setText(self.ledtChAnswerSecond.text()))
-        self.ledtChAnswerThird.textChanged.connect(lambda: self.rbtnChAnswerThird.setText(self.ledtChAnswerThird.text()))
+        self.ledtChAnswerThird.textChanged.connect(
+            lambda: self.rbtnChAnswerThird.setText(self.ledtChAnswerThird.text()))
         self.ledtChAnswerFour.textChanged.connect(lambda: self.rbtnChAnswerFour.setText(self.ledtChAnswerFour.text()))
 
-        self.btnRunTest.clicked.connect(self.__open_window_with_current_test)
+        self.btnTest.clicked.connect(self.__open_window_with_current_test)
         self.btnLogin.clicked.connect(lambda: self.__login_admin())
+        self.btnShowExample.clicked.connect(lambda: self.stckStudent.setCurrentWidget(self.pgExample))
+        self.btnShowTutorial.clicked.connect(lambda: self.stckStudent.setCurrentWidget(self.pgTutorial))
         self.btnAddQuestion.clicked.connect(lambda: self.clear_text_editors(is_end=False))
         self.btnEndCreateTest.clicked.connect(lambda: self.clear_text_editors(is_end=True))
 
@@ -113,7 +110,7 @@ class Application(QMainWindow, main_window):
         self.btnDelExample.clicked.connect(lambda: self.__delete_file_from_files(folder_name="examples"))
         self.btnDelTest.clicked.connect(lambda: self.__delete_file_from_files(folder_name="tests"))
 
-        self.btnChangeTest.clicked.connect(lambda: self.stackedAdminPanel.setCurrentWidget(self.pgChangeTest))
+        self.btnChangeTest.clicked.connect(lambda: self.stackProfessor.setCurrentWidget(self.pgEdit))
         self.btnChNext.clicked.connect(lambda: self.__display_current_question(is_origin=False, is_up=True))
         self.btnChPerv.clicked.connect(lambda: self.__display_current_question(is_origin=False, is_up=False))
         self.btnChFinish.clicked.connect(lambda: self.__save())
@@ -130,11 +127,11 @@ class Application(QMainWindow, main_window):
             dt: dict = json.loads(login_data.read())
 
         if login == dt['login'] and password == dt['password']:
-            self.stackedAdminPanel.setCurrentWidget(self.pgOperationWithFiles)
+            self.stackProfessor.setCurrentWidget(self.pgCreate)
         else:
             QMessageBox.information(self, "НЕУДАЧА", 'Неверный логин или пароль')
 
-        self.stackedAdminPanel.setCurrentWidget(self.pgOperationWithFiles)
+        self.stackProfessor.setCurrentWidget(self.pgCreate)
 
     def clear_text_editors(self, is_end: bool = False):
         meta_data: list = self.ledtTimeToDo.text().split()

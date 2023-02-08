@@ -6,23 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
-    <height>575</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <pointsize>16</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>Дипломный проект</string>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -35,95 +32,146 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
-      <property name="elideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <widget class="QWidget" name="tabTutorial">
+      <widget class="QWidget" name="tbStudent">
        <attribute name="title">
-        <string>Теория</string>
+        <string>Студенту</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="1" rowspan="2">
-         <widget class="QTextBrowser" name="vtextTutorialInfo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QStackedWidget" name="stckStudent">
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="html">
-           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QScrollArea" name="scrollTutorial">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="areaTutorial">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>146</width>
-             <height>494</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <layout class="QVBoxLayout" name="layTutorial">
-            <item>
-             <widget class="QPushButton" name="pushButton">
+          <widget class="QWidget" name="pgTutorial">
+           <layout class="QGridLayout" name="gridLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QScrollArea" name="scrollTutorial">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="areaTutorial">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>120</width>
+                 <height>516</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="layTutorial"/>
+              </widget>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="btnShowExample">
               <property name="text">
-               <string>PushButton</string>
+               <string>ПРАКТИКА</string>
               </property>
              </widget>
+            </item>
+            <item row="0" column="1" rowspan="2">
+             <widget class="QTextBrowser" name="pdfTutorial"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pgExample">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QScrollArea" name="scrollExample">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="areaExample">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>120</width>
+                 <height>480</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="layExample"/>
+              </widget>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="btnShowTutorial">
+              <property name="text">
+               <string>ТЕОРИЯ</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QPushButton" name="btnTest">
+              <property name="text">
+               <string>ТЕСТ</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="4">
+             <widget class="QTextBrowser" name="pdfExample"/>
             </item>
            </layout>
           </widget>
@@ -131,90 +179,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabExamples">
-       <attribute name="title">
-        <string>Практика</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QPushButton" name="btnRunTest">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
-          </property>
-          <property name="text">
-           <string>Перейти к тесту</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QScrollArea" name="scrollExample">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="areaExample">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>161</width>
-             <height>463</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="layExample"/>
-          </widget>
-         </widget>
-        </item>
-        <item row="0" column="1" rowspan="2">
-         <widget class="QTextBrowser" name="vtextExampleInfo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="html">
-           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tabTeacher">
+      <widget class="QWidget" name="tbProfessor">
        <attribute name="title">
         <string>Преподавателю</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QStackedWidget" name="stackedAdminPanel">
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
+         <widget class="QStackedWidget" name="stackProfessor">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="pgLogin">
-           <layout class="QGridLayout" name="gridLayout_3">
+           <layout class="QGridLayout" name="gridLayout_4">
             <item row="0" column="1">
              <spacer name="verticalSpacer_3">
               <property name="orientation">
@@ -223,7 +199,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>184</height>
+                <height>196</height>
                </size>
               </property>
              </spacer>
@@ -235,7 +211,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>243</width>
+                <width>249</width>
                 <height>20</height>
                </size>
               </property>
@@ -255,7 +231,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>243</width>
+                <width>249</width>
                 <height>20</height>
                </size>
               </property>
@@ -291,203 +267,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>185</height>
+                <height>195</height>
                </size>
               </property>
              </spacer>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pgOperationWithFiles">
+          <widget class="QWidget" name="pgCreate">
            <layout class="QGridLayout" name="gridLayout_5">
-            <item row="10" column="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerSecond">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1" rowspan="13">
-             <widget class="Line" name="line">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="Line" name="line_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="4">
-             <widget class="QPushButton" name="btnEndCreateTest">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>ЗАКОНЧИТЬ ТЕСТ</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerThird">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="12" column="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerFour">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0" rowspan="5">
-             <widget class="QGroupBox" name="groupBox">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="title">
-               <string>ВЕРНЫЙ ОТВЕТ</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerFirst">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerSecond">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerThird">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="rbtnAnswerFour">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <spacer name="verticalSpacer_9">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="3">
-             <widget class="QPushButton" name="btnAddQuestion">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>ДОБАВИТЬ ВОПРОС</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLineEdit" name="ledtTimeToDo">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2" colspan="3">
-             <widget class="Line" name="line_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="2" colspan="3">
-             <widget class="QLineEdit" name="ledtAnswerFirst">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" rowspan="5">
+            <item row="0" column="0" rowspan="3">
              <widget class="QGroupBox" name="gboxFileWorkers">
               <property name="font">
                <font>
@@ -500,7 +289,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="flat">
                <bool>false</bool>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_4">
+              <layout class="QVBoxLayout" name="verticalLayout_5">
                <item>
                 <widget class="QPushButton" name="btnAddTutorial">
                  <property name="cursor">
@@ -558,14 +347,201 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </layout>
              </widget>
             </item>
-            <item row="6" column="2" colspan="3">
+            <item row="0" column="1" rowspan="10">
+             <widget class="Line" name="line">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLineEdit" name="ledtTimeToDo">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QPushButton" name="btnAddQuestion">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>ДОБАВИТЬ ВОПРОС</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QPushButton" name="btnEndCreateTest">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>ЗАКОНЧИТЬ ТЕСТ</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" colspan="3">
+             <widget class="Line" name="line_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <spacer name="verticalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>36</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="0">
+             <widget class="Line" name="line_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2" colspan="3">
              <widget class="Line" name="line_4">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
              </widget>
             </item>
-            <item row="2" column="2" rowspan="4" colspan="3">
+            <item row="6" column="0" rowspan="4">
+             <widget class="QGroupBox" name="groupBox">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="title">
+               <string>ВЕРНЫЙ ОТВЕТ</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QRadioButton" name="rbtnAnswerFirst">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtnAnswerSecond">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtnAnswerThird">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="rbtnAnswerFour">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="6" column="2" colspan="3">
+             <widget class="QLineEdit" name="ledtAnswerFirst">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="2" colspan="3">
+             <widget class="QLineEdit" name="ledtAnswerSecond">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="2" colspan="3">
+             <widget class="QLineEdit" name="ledtAnswerThird">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="2" colspan="3">
+             <widget class="QLineEdit" name="ledtAnswerFour">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2" rowspan="2" colspan="3">
              <widget class="QPlainTextEdit" name="ptedQuestion">
               <property name="cursor" stdset="0">
                <cursorShape>IBeamCursor</cursorShape>
@@ -577,8 +553,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pgChangeTest">
-           <layout class="QGridLayout" name="gridLayout_4">
+          <widget class="QWidget" name="pgEdit">
+           <layout class="QGridLayout" name="gridLayout_6">
             <item row="0" column="1" rowspan="3">
              <widget class="Line" name="line_6">
               <property name="orientation">
@@ -668,7 +644,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="title">
                <string>ВЕРНЫЙ ОТВЕТ</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_6">
+              <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
                 <widget class="QRadioButton" name="rbtnChAnswerFirst">
                  <property name="text">
@@ -712,6 +688,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
              </widget>
             </item>
+            <item row="5" column="2" colspan="4">
+             <widget class="QLineEdit" name="ledtChAnswerSecond">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
             <item row="6" column="2" colspan="4">
              <widget class="QLineEdit" name="ledtChAnswerThird">
               <property name="font">
@@ -736,26 +724,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
              </widget>
             </item>
-            <item row="5" column="2" colspan="4">
-             <widget class="QLineEdit" name="ledtChAnswerSecond">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1" rowspan="4">
-             <widget class="Line" name="line_8">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
+            <item row="0" column="0" rowspan="3">
              <widget class="QScrollArea" name="scrollTests">
               <property name="widgetResizable">
                <bool>true</bool>
@@ -766,11 +735,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <x>0</x>
                  <y>0</y>
                  <width>157</width>
-                 <height>112</height>
+                 <height>351</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="layTests"/>
               </widget>
+             </widget>
+            </item>
+            <item row="4" column="1" rowspan="4">
+             <widget class="Line" name="line_8">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
              </widget>
             </item>
            </layout>
@@ -779,45 +755,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabAbout">
+      <widget class="QWidget" name="btAbout">
        <attribute name="title">
         <string>Справка</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QTextBrowser" name="tbrAbout">
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-         </widget>
+         <widget class="QTextBrowser" name="textBrowser"/>
         </item>
         <item>
-         <widget class="QLabel" name="lblAboutAuthon">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>ForbiddenCursor</cursorShape>
-          </property>
+         <widget class="QLabel" name="label">
           <property name="text">
-           <string>© Программное приложение разработано студентом 4 курса Бараковским Даниилом</string>
-          </property>
-          <property name="textFormat">
-           <enum>Qt::PlainText</enum>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <string>TextLabel</string>
           </property>
          </widget>
         </item>
